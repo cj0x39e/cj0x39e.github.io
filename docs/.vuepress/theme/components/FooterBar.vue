@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p class="text">© {{ thisYear }} cj0x39e</p>
+    <p class="text">© {{ thisYear }} cj0x39e / I konw nothing</p>
   </footer>
 </template>
 
