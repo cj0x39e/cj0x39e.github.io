@@ -1,0 +1,26 @@
+{
+  "name": "cj0x39e-blog",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@vssue/api-github-v3": "^1.4.7",
+    "@vssue/vuepress-plugin-vssue": "^1.4.7",
+    "@vuepress/plugin-google-analytics": "^1.8.2",
+    "@vuepress/plugin-last-updated": "^1.2.0",
+    "gitalk": "^1.7.2",
+    "prismjs": "^1.19.0",
+    "timeago.js": "^4.0.2",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-zooming": "^1.1.8",
+    "vuepress-theme-simple": "^1.2.2"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}
