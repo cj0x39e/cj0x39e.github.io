@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>终端配置代理 | cj0x39e</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-1PWBM2M60V" async="true"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1PWBM2M60V');
+      </script>
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.f6473f53.css" as="style"><link rel="preload" href="/assets/js/app.4cbbc9bb.js" as="script"><link rel="preload" href="/assets/js/5.34e29ee1.js" as="script"><link rel="preload" href="/assets/js/18.c619dcba.js" as="script"><link rel="prefetch" href="/assets/js/10.e7b08e66.js"><link rel="prefetch" href="/assets/js/11.a3557a6f.js"><link rel="prefetch" href="/assets/js/12.c8813de3.js"><link rel="prefetch" href="/assets/js/13.f3a37fca.js"><link rel="prefetch" href="/assets/js/14.563b17b5.js"><link rel="prefetch" href="/assets/js/15.1f55af88.js"><link rel="prefetch" href="/assets/js/16.b8240ea5.js"><link rel="prefetch" href="/assets/js/17.74a7cce4.js"><link rel="prefetch" href="/assets/js/2.9f42a9db.js"><link rel="prefetch" href="/assets/js/3.b99ac91c.js"><link rel="prefetch" href="/assets/js/4.e6d6f17b.js"><link rel="prefetch" href="/assets/js/6.e9fb628d.js"><link rel="prefetch" href="/assets/js/7.4683c2f5.js"><link rel="prefetch" href="/assets/js/8.7613bb7f.js"><link rel="prefetch" href="/assets/js/9.e3021c92.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f6473f53.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container vuepress-theme-simple"><header class="header"><a href="/" title="" class="site-name router-link-active">
+      cj0x39e
+      
+    </a> <div style="clear: both"></div> <!----></header> <section class="post-view"><div class="post-head"><h1 class="post-title">
+      终端配置代理
+    </h1></div> <div class="post-sub-head"><time datetime="10/30/2020, 12:00:00 AM" title="10/30/2020, 12:00:00 AM" pubdate="pubdate" class="post-date">
+  8 months ago
+</time></div> <div class="content__default"><h2 id="终端配置代理"><a href="#终端配置代理" class="header-anchor">#</a> 终端配置代理</h2> <p>以 zsh 为例。</p> <div class="language- extra-class"><pre class="language-text"><code>~vim ~/.zshrc
+</code></pre></div><p>按下<strong>i</strong>，进入编辑模式，并添加如下配置：</p> <div class="language- extra-class"><pre class="language-text"><code># proxy list# 注意这里的端口号，要写成你自己的alias proxy='export all_proxy=socks5://127.0.0.1:7891'alias unproxy='unset all_proxy'
+</code></pre></div><p>按下 <strong>:wq</strong>保存后退出。
+输入下面的命令进行更新：</p> <div class="language- extra-class"><pre class="language-text"><code>source ~/.zshrc
+</code></pre></div><p>然后使用下面的命令开启代理</p> <div class="language-bash extra-class"><pre class="language-bash"><code>proxy
+</code></pre></div><p>关闭代理的时候使用下面的命令</p> <div class="language- extra-class"><pre class="language-text"><code>unproxy
+</code></pre></div></div> <div></div></section> <footer class="footer"><p class="text">I know nothing...</p></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4cbbc9bb.js" defer></script><script src="/assets/js/5.34e29ee1.js" defer></script><script src="/assets/js/18.c619dcba.js" defer></script>
+  </body>
+</html>

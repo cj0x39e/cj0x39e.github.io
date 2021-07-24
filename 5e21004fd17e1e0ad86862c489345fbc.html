@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>querySelectorAll()出人意料的地方 | cj0x39e</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-1PWBM2M60V" async="true"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1PWBM2M60V');
+      </script>
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.f6473f53.css" as="style"><link rel="preload" href="/assets/js/app.4cbbc9bb.js" as="script"><link rel="preload" href="/assets/js/5.34e29ee1.js" as="script"><link rel="preload" href="/assets/js/14.563b17b5.js" as="script"><link rel="prefetch" href="/assets/js/10.e7b08e66.js"><link rel="prefetch" href="/assets/js/11.a3557a6f.js"><link rel="prefetch" href="/assets/js/12.c8813de3.js"><link rel="prefetch" href="/assets/js/13.f3a37fca.js"><link rel="prefetch" href="/assets/js/15.1f55af88.js"><link rel="prefetch" href="/assets/js/16.b8240ea5.js"><link rel="prefetch" href="/assets/js/17.74a7cce4.js"><link rel="prefetch" href="/assets/js/18.c619dcba.js"><link rel="prefetch" href="/assets/js/2.9f42a9db.js"><link rel="prefetch" href="/assets/js/3.b99ac91c.js"><link rel="prefetch" href="/assets/js/4.e6d6f17b.js"><link rel="prefetch" href="/assets/js/6.e9fb628d.js"><link rel="prefetch" href="/assets/js/7.4683c2f5.js"><link rel="prefetch" href="/assets/js/8.7613bb7f.js"><link rel="prefetch" href="/assets/js/9.e3021c92.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f6473f53.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container vuepress-theme-simple"><header class="header"><a href="/" title="" class="site-name router-link-active">
+      cj0x39e
+      
+    </a> <div style="clear: both"></div> <!----></header> <section class="post-view"><div class="post-head"><h1 class="post-title">
+      querySelectorAll()出人意料的地方
+    </h1></div> <div class="post-sub-head"><time datetime="4/1/2016, 12:00:00 AM" title="4/1/2016, 12:00:00 AM" pubdate="pubdate" class="post-date">
+  5 years ago
+</time></div> <div class="content__default"><p>如果经常用 jQuery,那么或许有一天当你用<code>querySelectorAll()</code>方法的时候,会感觉有一点奇怪.</p> <p>运行下面这段代码:</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>test<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>test_inner<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> test <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">&quot;div div&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>根据使用 jQuery 的经验,length 毫无疑问的是 0,但是实际上却弹出结果 1.产生这个结果是因为,<code>querySelectorAll</code>传入的参数其实是一个<code>CSS</code>选择器,而且检查是否符合该选择器规则的范围是整个文档,所以很明显<code>test_inner</code>在文档范围符合<code>div div</code>的<code>CSS</code>规则,当然最终返回的元素集合还需要满足是<code>test</code>的子元素.</p> <p>一些框架用下面的方法修复这个问题,使结果符合我们的习惯:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> span<span class="token punctuation">,</span>
+  selector <span class="token operator">=</span> <span class="token string">&quot;div span&quot;</span><span class="token punctuation">,</span>
+  context <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">&quot;#test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> oldContext <span class="token operator">=</span> context<span class="token punctuation">,</span>
+  oldId <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  newId <span class="token operator">=</span> oldId <span class="token operator">||</span> <span class="token string">&quot;__sizzle__&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  span <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">&quot;#&quot;</span> <span class="token operator">+</span> newId <span class="token operator">+</span> <span class="token string">&quot; &quot;</span> <span class="token operator">+</span> selector<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>oldId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    oldContext<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <div></div></section> <footer class="footer"><p class="text">I know nothing...</p></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4cbbc9bb.js" defer></script><script src="/assets/js/5.34e29ee1.js" defer></script><script src="/assets/js/14.563b17b5.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一套关于构建可维护性的 CSS 的规范 | cj0x39e</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-1PWBM2M60V" async="true"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1PWBM2M60V');
+      </script>
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.f6473f53.css" as="style"><link rel="preload" href="/assets/js/app.4cbbc9bb.js" as="script"><link rel="preload" href="/assets/js/5.34e29ee1.js" as="script"><link rel="preload" href="/assets/js/15.1f55af88.js" as="script"><link rel="prefetch" href="/assets/js/10.e7b08e66.js"><link rel="prefetch" href="/assets/js/11.a3557a6f.js"><link rel="prefetch" href="/assets/js/12.c8813de3.js"><link rel="prefetch" href="/assets/js/13.f3a37fca.js"><link rel="prefetch" href="/assets/js/14.563b17b5.js"><link rel="prefetch" href="/assets/js/16.b8240ea5.js"><link rel="prefetch" href="/assets/js/17.74a7cce4.js"><link rel="prefetch" href="/assets/js/18.c619dcba.js"><link rel="prefetch" href="/assets/js/2.9f42a9db.js"><link rel="prefetch" href="/assets/js/3.b99ac91c.js"><link rel="prefetch" href="/assets/js/4.e6d6f17b.js"><link rel="prefetch" href="/assets/js/6.e9fb628d.js"><link rel="prefetch" href="/assets/js/7.4683c2f5.js"><link rel="prefetch" href="/assets/js/8.7613bb7f.js"><link rel="prefetch" href="/assets/js/9.e3021c92.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f6473f53.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container vuepress-theme-simple"><header class="header"><a href="/" title="" class="site-name router-link-active">
+      cj0x39e
+      
+    </a> <div style="clear: both"></div> <!----></header> <section class="post-view"><div class="post-head"><h1 class="post-title">
+      一套关于构建可维护性的 CSS 的规范
+    </h1></div> <div class="post-sub-head"><time datetime="7/4/2016, 12:00:00 AM" title="7/4/2016, 12:00:00 AM" pubdate="pubdate" class="post-date">
+  5 years ago
+</time></div> <div class="content__default"><p><a href="http://rscss.io/" target="_blank" rel="noopener noreferrer">原文地址<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <blockquote><p>一套关于构建可维护性的 CSS 的规范。</p></blockquote> <h1 id="_1-组件"><a href="#_1-组件" class="header-anchor">#</a> 1.组件</h1> <blockquote><p>考虑把 UI 图上的每一块都作为一个单独的组件。</p></blockquote> <h2 id="_1-1-组件命名"><a href="#_1-1-组件命名" class="header-anchor">#</a> 1.1 组件命名</h2> <blockquote><p>组件命名至少用两个单词，用中划线 - 链接，例如：</p></blockquote> <ul><li>喜欢按钮 <code>like-button</code></li> <li>查找的表单 <code>search-form</code></li> <li>新闻文章卡片 <code>article-card</code></li></ul> <h2 id="_1-2-元素"><a href="#_1-2-元素" class="header-anchor">#</a> 1.2 元素</h2> <blockquote><p>元素是组成组件的一部分。</p></blockquote> <ul><li>元素命名,每个组件都可以由多个元素组成，最好给它们指定一个单词命名的类。</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code><span class="token selector">.search-form</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .field</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+  <span class="token selector">&gt; .action</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>元素选择器,如果没有特殊情况，选择器应该配合子代选择器，避免组件嵌套产生样式冲突。</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code><span class="token selector">.article-card</span> <span class="token punctuation">{</span>
+  <span class="token selector">.title</span> <span class="token punctuation">{</span><span class="token comment">/*这是没有问题的*/</span><span class="token punctuation">}</span>
+  <span class="token selector">&gt; .author</span> <span class="token punctuation">{</span><span class="token comment">/*这是更好的写法*/</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>多个单词的类名,如果类名需要两个或者多个单词，合并它们即可，不要使用破折号或者下划线。</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code><span class="token selector">.profile-box</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .firstname</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+  <span class="token selector">&gt; .lastname</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+  <span class="token selector">&gt; .avatar</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>避免标签选择器，无论什么时候都应该使用类名来作为选择器，标签选择器工作起来是可以的，
+但是可能带来小的性能损失而且没有类选择器那样具有描述性。</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code>  <span class="token selector">.article-card</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; h3</span>    <span class="token punctuation">{</span> <span class="token comment">/* 不要使用标签 */</span> <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .name</span> <span class="token punctuation">{</span> <span class="token comment">/* 这样很好 */</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_1-3-组件变化"><a href="#_1-3-组件变化" class="header-anchor">#</a> 1.3 组件变化</h2> <blockquote><p>组件可以有多种形式变化，组件的元素也可以有许多变化。</p></blockquote> <ul><li>命名组件变化，特殊形式的组件名是一个以中划线开头的单词</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code><span class="token selector">.like-button</span> <span class="token punctuation">{</span>
+  <span class="token selector">&amp;.-wide</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+  <span class="token selector">&amp;.-short</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+  <span class="token selector">&amp;.-disabled</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>命名组件元素形式变化</li></ul> <div class="language-CSS extra-class"><pre class="language-css"><code><span class="token selector">.shopping-card</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .title</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .title.-small</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>关于中划线，选择中划线作为变种组件选择器命名开头的原因：
+<ul><li>可以有效的区分变种组件或元素</li> <li>因为 CSS 的特殊字符只能以_或者-开头</li> <li>而中划线比下划线容易辨认</li> <li>中划线开启特殊样式比较像 UNIX 的命令参数</li></ul></li></ul> <h2 id="_1-4-嵌套组件"><a href="#_1-4-嵌套组件" class="header-anchor">#</a> 1.4 嵌套组件</h2> <blockquote><p>有些时候组件嵌套是必要的，怎么更好的嵌套，这里有一些指南。</p></blockquote> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>article-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>vote-box<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>title<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>meta<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ul><li>变种，当嵌套在另一个组件时，一个组件可能需要以某种方式出现,避免在父组件中修改嵌套组件。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.article-header</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .vote-box &gt; .up</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ✗ avoid this */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>相反，更好的做法是将一个变种类添加到嵌套组件中，并在组件中修改其样式。</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.vote-box</span> <span class="token punctuation">{</span>
+  <span class="token selector">&amp;.-highlight &gt; .up</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>简化嵌套组件，有些时候，嵌套组件的标记可能有些多余：</li></ul> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>search-form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>input<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>search-button -red -large<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>这时可以简化组件并使用 CSS 预处理器的继承机制：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>search-form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>input<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>submit<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.search-form</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .submit</span> <span class="token punctuation">{</span>
+    <span class="token atrule"><span class="token rule">@extend</span> .search-button<span class="token punctuation">;</span></span>
+    <span class="token atrule"><span class="token rule">@extend</span> .search-button.-red<span class="token punctuation">;</span></span>
+    <span class="token atrule"><span class="token rule">@extend</span> .search-button.-large<span class="token punctuation">;</span></span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_1-5-布局"><a href="#_1-5-布局" class="header-anchor">#</a> 1.5 布局</h2> <ul><li>避免定位属性，为了保证组件在不同的容器里面能够重复使用，应该避免在组件中使用以下属性：
+<ul><li>Positioning (position, top, left, right, bottom)</li> <li>Floats (float, clear)</li> <li>Margins (margin)</li> <li>Dimensions (width, height) *</li></ul></li> <li>固定尺寸，也有例外的情况，元素需要固定的尺寸如图像或者标志。</li> <li>在父级中定位组件的位置和尺寸,如果你需要定义组件的尺寸或者位置，应该在它们的父级中定义组件的这些属性，像下面的例子一样，定义 .article-card 的 width 和 floats 在它的容器 .article-list 中，而不是定义在这个组件中。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.article-list</span> <span class="token punctuation">{</span>
+  <span class="token selector">&amp;</span> <span class="token punctuation">{</span>
+    <span class="token atrule"><span class="token rule">@include</span> clearfix<span class="token punctuation">;</span></span>
+  <span class="token punctuation">}</span>
+
+  <span class="token selector">&gt; .article-card</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 33.3%<span class="token punctuation">;</span>
+    <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.article-card</span> <span class="token punctuation">{</span>
+  <span class="token selector">&amp;</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .image</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .title</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .category</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_1-6-工具类"><a href="#_1-6-工具类" class="header-anchor">#</a> 1.6 工具类</h2> <ul><li>对于要重写值的通用类，将它们放在一个单独的文件中，并给定一个以下划线开头的名称。通常在属性值后面加上 !important，
+应该谨慎的使用它们。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">._unmargin</span> <span class="token punctuation">{</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 0 <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">._center</span> <span class="token punctuation">{</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">._pull-left</span> <span class="token punctuation">{</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> left <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">._pull-right</span> <span class="token punctuation">{</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> right <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>类名的前缀为下划线，这使得在使用它时变得容易辨认，不过它看起来有点丑陋，就好像使用太多了它在说：
+应该仔细想想要不要用这么多工具类？</li> <li>组织工具类代码，所有的工具类应该集中放在一个叫 helpers 的文件里面，虽然可以把它们分散开来，但是集中管理
+能避免重复的定义这些东西。</li></ul> <h1 id="_2-css-结构"><a href="#_2-css-结构" class="header-anchor">#</a> 2. CSS 结构</h1> <ul><li>一个组件一个文件，每一个组件，应该放在一个单独的文件里面。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token comment">/* css/components/search-form.scss */</span>
+<span class="token selector">.search-form</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .button</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .field</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .label</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token selector">// variants
+  &amp;.-small</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&amp;.-wide</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>使用全局匹配, 在 sas-rails 和 stylus ，能够很轻松的导入所有的组件。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code>@import <span class="token string">&quot;components/* */&quot;</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>避免过多的嵌套，使用不超过一层的嵌套，这很容易做到。</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token comment">/* ✗ Avoid: 3 levels of nesting */</span>
+<span class="token selector">.image-frame</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .description</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+
+    <span class="token selector">&gt; .icon</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* ... */</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* ✓ Better: 2 levels */</span>
+<span class="token selector">.image-frame</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .description</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .description &gt; .icon</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h1 id="_3-笔记"><a href="#_3-笔记" class="header-anchor">#</a> 3.笔记</h1> <ul><li>避免父组件的样子应该到子组件上，如果父组件和嵌套的组件，拥有相同名字的子元素，那么很有可能产生样式冲突：</li></ul> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>article-link<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>vote-box<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>up<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>down<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>count<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>title<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Article title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>count<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3 votes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.article-link</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .title</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .count</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... (!!!) */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.vote-box</span> <span class="token punctuation">{</span>
+  <span class="token selector">&gt; .up</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .down</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">&gt; .count</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在上面这个例子中，如果 .article-link &gt; .count 没有这个子选择器，那这个样式也会应用到
+.vote-box .count 上，这也是我们为什么要使用子选择器的原因。</p> <ul><li><p>恐惧心理，一些开发者可能害怕应用这些规范，例如：</p> <ul><li>&quot;我不想使用破折号&quot;，破折号不是必须的，但是要有一个方案去区分组件、元素和变种组件</li> <li>&quot;我的组件不需要两个单词&quot;，有些组件确实只需要一个单词，例如 alert ，这种情况下，可以考虑使用一些后缀，这将使组件更具有描述性，例如下面这些组件名：</li></ul> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.alert-box</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.alert-card</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.alert-block</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>或者行内组件的命名:</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.link-button</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.link-span</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div></li></ul> <h1 id="_4-总结"><a href="#_4-总结" class="header-anchor">#</a> 4.总结</h1> <ul><li>用两个单词命名组件</li> <li>组件的元素用一个单词命名</li> <li>变种组件以类名以中划线开头</li> <li>组件可以嵌套</li> <li>记住可以用扩展让事情变的简单</li></ul></div> <div></div></section> <footer class="footer"><p class="text">I know nothing...</p></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4cbbc9bb.js" defer></script><script src="/assets/js/5.34e29ee1.js" defer></script><script src="/assets/js/15.1f55af88.js" defer></script>
+  </body>
+</html>
