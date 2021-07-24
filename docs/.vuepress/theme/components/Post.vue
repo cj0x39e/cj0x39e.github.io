@@ -27,8 +27,8 @@ export default {
   },
   mounted() {
     const gitalk = new Gitalk({
-      clientID: "7a482526c12e6a8123f0",
-      clientSecret: "4faf2e5ce70c1ef2328da0f6bd8306160a7b53cf",
+      clientID: "459f8e75f57d8b3f88e8",
+      clientSecret: "08ba75df314e09dd9206d187ccbcbfa4a0228b58",
       repo: "cj0x39e", // The repository of store comments,
       owner: "cj0x39e",
       admin: ["cj0x39e"],
