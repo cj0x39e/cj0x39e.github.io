@@ -10,7 +10,7 @@ module.exports = {
     [
       "script",
       {
-        src: "https://www.googletagmanager.com/gtag/js?id=G-1PWBM2M60V",
+        src: "https://www.googletagmanager.com/gtag/js?id=G-7SC90XJ6N8",
         async: true,
       },
     ],
@@ -21,7 +21,7 @@ module.exports = {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-1PWBM2M60V');
+      gtag('config', 'G-7SC90XJ6N8');
       `,
     ],
   ],
